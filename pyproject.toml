@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "proteomics-meta"
+version = "0.2.0"
+description = "Sample-aware proteomics meta-analysis engine (VAE ensemble, network inference, feature attribution)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [{ name = "Panagiotis Karanikolaos" }]
+keywords = ["proteomics", "meta-analysis", "variational-autoencoder", "network-biology", "shap", "streamlit"]
+
+dependencies = [
+    "numpy",
+    "pandas",
+    "scipy",
+    "scikit-learn",
+    "networkx",
+    "requests",
+    "pyarrow",
+    "openpyxl",
+    "matplotlib",
+    "seaborn",
+    "tensorflow==2.13.0",
+]
+
+[project.optional-dependencies]
+app = ["streamlit", "streamlit-lottie", "plotly"]
+advanced = ["python-louvain", "shap", "phate", "kmapper", "gseapy", "umap-learn", "adjustText"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+proteomics-meta = "proteomics_meta.cli:main"
+proteomics-meta-app = "proteomics_meta.app_launcher:main"
+
+[project.urls]
+Repository = "https://github.com/pnsKaranik/proteomics-meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+proteomics_meta = ["py.typed"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+extend-exclude = ["src/proteomics_meta/app.py"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["E501", "E402", "E701", "E702"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

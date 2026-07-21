@@ -1,0 +1,24 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.env
+
+# analysis outputs / caches / local data
+Meta_Analysis_Results/
+Meta_Analysis_Final_Results/
+data/
+ollama_data/
+gene_cache.json
+*.db
+*.sqlite
+*.h5
+
+# tooling
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.DS_Store
